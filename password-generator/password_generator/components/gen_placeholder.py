@@ -6,7 +6,7 @@ from ..utils import create_new_password
 
 class GenPlaceholder(rio.Component):
     label: str = "Генератор паролей"
-    value: float = 0
+    value: float = 8
     text: str = ""
 
     def on_change_slider(self, event: rio.SliderChangeEvent):
@@ -37,7 +37,7 @@ class GenPlaceholder(rio.Component):
                 spacing=1),
             rio.Row(rio.Slider(
                     value=self.value,
-                    minimum=0,
+                    minimum=8,
                     maximum=128,
                     step=1,
                     show_values=True,
@@ -46,7 +46,7 @@ class GenPlaceholder(rio.Component):
                     rio.NumberInput(value=self.value,
                                     label="Длина",
                                     decimals=0,
-                                    minimum=0,
+                                    minimum=8,
                                     maximum=128,
                                     width=1,
                                     on_change=self.on_change_num),),
