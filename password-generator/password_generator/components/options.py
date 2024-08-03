@@ -29,7 +29,6 @@ class Options(rio.Component):
 
     def is_on_change_bad_symbol(self, event: rio.CheckboxChangeEvent):
         GlobalOptions.is_on_bad_symbol = event.is_on
-        print(GlobalOptions.is_on_bad_symbol)
 
     def build(self) -> rio.Component:
         return rio.Grid(
