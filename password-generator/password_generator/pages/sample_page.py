@@ -12,7 +12,7 @@ class SamplePage(rio.Component):
         return rio.Column(
             comps.Title(),
             comps.GenPlaceholder(),
-            rio.Spacer(height=5),
+            rio.Spacer(height=4.5),
             comps.Footer(),
             spacing=2,
             margin=2,
