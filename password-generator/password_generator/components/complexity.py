@@ -1,4 +1,12 @@
 import rio
+from dataclasses import dataclass
+
+
+@dataclass
+class GlobalComplexity():
+    bits: str = "0"
+    banner_text: str = "Пусто"
+    banner_style: str = "warning"
 
 
 class Complexity(rio.Component):
@@ -11,8 +19,8 @@ class Complexity(rio.Component):
                              style=rio.TextStyle(
                                 font_weight="bold"
                              )),
-                    rio.Banner(text="Пусто",
-                               style="warning",
+                    rio.Banner(text=GlobalComplexity.banner_text,
+                               style=GlobalComplexity.banner_style,
                                align_x=-0.3,
                                width=0.5),
                     rio.Icon(icon="material/encrypted:fill",
@@ -27,7 +35,7 @@ class Complexity(rio.Component):
                              align_x=-0.8,
                              style=rio.TextStyle(
                                 font_weight="bold")),
-                    rio.Text(text="0 bits",
+                    rio.Text(text=f"{GlobalComplexity.bits} bits",
                              selectable=False,
                              align_x=-1.6,
                              style=rio.TextStyle(
