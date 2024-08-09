@@ -5,13 +5,11 @@ year = dt.now().year
 
 
 class Footer(rio.Component):
-    copyright: str = (f"© 2007 — {year} ООО «Роксис». "
-                      + "Обслуживание компьютеров организаций "
-                      + "в Зеленограде и Москве.")
-    target_link: str = "https://www.roksis.ru/contacts/"
-    adress: str = "Москва, Зеленоград, ул. Юности, д. 8, оф. 702-718"
-    email: str = "info@roksis.ru"
-    phone: str = "8 (495) 662-47-21"
+    copyright: str = (f"© {year} made with Rio framework")
+    target_link: str = ""
+    adress: str = "Your adress"
+    email: str = "info@info.com"
+    phone: str = "+00 0 000000000"
 
     def build(self) -> rio.Component:
         return rio.Grid(
