@@ -5,36 +5,38 @@ from ..utils import create_new_password, get_password_entropy
 
 
 class GenPlaceholder(rio.Component):
-    label: str = "Генератор паролей"
+    label: str = "Password Generator"
+    num_label: str = ""
     value: float = 8
     text: str = ""
     hex_color: Literal["#ff0000", "#ffd966", "#93c47d", "#00ff00"] = "#ff0000"
     bits: str = "0"
-    banner_text: Literal["Пусто", "Жалкий", "Слабый",
-                         "Хороший", "Сильный", "Превосходный"] = "Пусто"
+    banner_text: Literal["Empty", "Pathetic", "Weak",
+                         "Good", "Strong", "Excellent"] = "Empty"
     banner_style: Literal["success", "danger", "info", "warning"] = "warning"
+    entropy: str = "Entropy:"
 
     def change_banner_text(self):
         bits = float(self.bits)
         if bits == 0:
-            self.banner_text = "Пусто"
-        elif bits == 1 and bits <= 30:
-            self.banner_text = "Жалкий"
+            self.banner_text = "Empty"
+        elif bits >= 1 and bits <= 30:
+            self.banner_text = "Pathetic"
             self.banner_style = "danger"
         elif bits > 30 and bits <= 50:
-            self.banner_text = "Слабый"
+            self.banner_text = "Weak"
             self.banner_style = "danger"
             self.hex_color = "#ff0000"
         elif bits > 50 and bits <= 70:
-            self.banner_text = "Хороший"
+            self.banner_text = "Good"
             self.banner_style = "warning"
             self.hex_color = "#ffd966"
         elif bits > 70 and bits <= 120:
-            self.banner_text = "Сильный"
+            self.banner_text = "Strong"
             self.banner_style = "success"
             self.hex_color = "#93c47d"
         elif bits > 120:
-            self.banner_text = "Превосходный"
+            self.banner_text = "Excellent"
             self.banner_style = "success"
             self.hex_color = "#00ff00"
 
@@ -42,25 +44,29 @@ class GenPlaceholder(rio.Component):
         self.value = event.value
         self.text = create_new_password(self.value,
                                         comps.GlobalOptions.symbols)
-        print(f"value slider: {self.value}")
+        self.bits = str(get_password_entropy(len(self.text),
+                                             len(comps.GlobalOptions.symbols)))
+        self.change_banner_text()
         return self.value
 
     def on_change_num(self, event: rio.NumberInputChangeEvent):
         self.value = event.value
         self.text = create_new_password(self.value,
                                         comps.GlobalOptions.symbols)
-        print(f"value inputnum: {self.value}")
+        self.bits = str(get_password_entropy(len(self.text),
+                                             len(comps.GlobalOptions.symbols)))
+        self.change_banner_text()
         return self.value
 
     async def _on_press(self):
-        print(comps.GlobalOptions.symbols)
-        self.text = create_new_password(self.value, comps.GlobalOptions.symbols)
-        self.bits = str(get_password_entropy(len(self.text), len(comps.GlobalOptions.symbols)))
+        self.text = create_new_password(self.value,
+                                        comps.GlobalOptions.symbols)
+        self.bits = str(get_password_entropy(len(self.text),
+                                             len(comps.GlobalOptions.symbols)))
         self.change_banner_text()
         return self.text
 
     async def get_to_clip(self):
-        print(self.text)
         await self.session.set_clipboard(self.text)
 
     def build(self) -> rio.Component:
@@ -85,13 +91,13 @@ class GenPlaceholder(rio.Component):
                     width=32,
                     on_change=self.on_change_slider),
                     rio.NumberInput(value=self.value,
-                                    label="Длина",
+                                    label="length",
                                     decimals=0,
                                     minimum=8,
                                     maximum=128,
                                     width=1,
                                     on_change=self.on_change_num),),
-            rio.Row(rio.Text(text="Сложность:",
+            rio.Row(rio.Text(text="Complexity:",
                              selectable=False,
                              style=rio.TextStyle(
                                 font_weight="bold"
@@ -107,7 +113,7 @@ class GenPlaceholder(rio.Component):
                              fill=rio.LinearGradientFill(
                                  (self.session.theme.secondary_color, 0),
                                  (self.session.theme.primary_color, 1),),),
-                    rio.Text(text="Энтропия:",
+                    rio.Text(text=self.entropy,
                              selectable=False,
                              align_x=-0.8,
                              style=rio.TextStyle(
