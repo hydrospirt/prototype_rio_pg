@@ -14,3 +14,6 @@ class FooterSettings:
 class HeaderSettings:
     TITLE = "Your Title"
     SUB_TITLE = "Some subtitle"
+
+
+OPTIONS_TEXT = "Exclude the characters l and I"

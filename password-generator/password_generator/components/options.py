@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 import rio
 
-from ..utils import Symbols, delete_bad_symbols, delete_symbols
+from ..utils import Symbols, delete_bad_symbols, delete_symbols, OPTIONS_TEXT
 
 
 @dataclass
@@ -18,7 +18,7 @@ class GlobalOptions:
 
 
 class Options(rio.Component):
-    text: str = "Exclude the characters l and I"
+    text: str = OPTIONS_TEXT
 
     def __post_init__(self):
         if GlobalOptions.is_on_lower:
