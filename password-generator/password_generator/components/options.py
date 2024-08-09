@@ -18,6 +18,8 @@ class GlobalOptions:
 
 
 class Options(rio.Component):
+    text: str = "Exclude the characters l and I"
+
     def __post_init__(self):
         if GlobalOptions.is_on_lower:
             if (Symbols.LOWERCASE not in GlobalOptions.symbols
@@ -78,7 +80,7 @@ class Options(rio.Component):
 
     def is_on_change_bad_symbol(self, event: rio.CheckboxChangeEvent):
         GlobalOptions.is_on_bad_symbol = event.is_on
-        if GlobalOptions.is_on_bad_symbol:
+        if GlobalOptions.is_on_bad_symbol or len(GlobalOptions.symbols) == 10:
             GlobalOptions.symbols = delete_bad_symbols(GlobalOptions.symbols)
             return GlobalOptions.symbols
         else:
@@ -101,7 +103,7 @@ class Options(rio.Component):
                     ),
             rio.Row(rio.Checkbox(is_on=GlobalOptions.is_on_bad_symbol,
                                  on_change=self.is_on_change_bad_symbol),
-                    rio.Text(text="Исключить символы l и I",
+                    rio.Text(text=self.text,
                     align_x=-0.001,
                     width=35)),
             column_spacing=0,
