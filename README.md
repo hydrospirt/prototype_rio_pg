@@ -59,6 +59,6 @@ git clone git@github.com:hydrospirt/prototype_rio_pg.git
 The app is running at http://127.0.0.1:8000
 ```
 ## Лицензия 
-🎉 Ура, бесплатная лицензия [MIT license](https://github.com/)
+🎉 Ура, бесплатная лицензия [Unlicense](https://github.com/hydrospirt/prototype_rio_pg/blob/master/LICENSE)
 
 Поставьте 🌟, если понравилось :)
