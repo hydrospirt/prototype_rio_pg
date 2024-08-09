@@ -2,8 +2,8 @@ import rio
 
 
 class Title(rio.Component):
-    title: str = "Роксис"
-    subtitle: str = "Информационные системы"
+    title: str = "Your Title"
+    subtitle: str = "Some subtitle"
 
     def build(self) -> rio.Component:
         return rio.Column(
