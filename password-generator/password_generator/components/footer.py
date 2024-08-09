@@ -1,15 +1,13 @@
-from datetime import datetime as dt
 import rio
-
-year = dt.now().year
+from ..utils import FooterSettings
 
 
 class Footer(rio.Component):
-    copyright: str = (f"© {year} made with Rio framework")
-    target_link: str = ""
-    adress: str = "Your adress"
-    email: str = "info@info.com"
-    phone: str = "+00 0 000000000"
+    copyright: str = FooterSettings.COPYRIGHT
+    target_link: str = FooterSettings.TR_LINK
+    adress: str = FooterSettings.ADRESS
+    email: str = FooterSettings.EMAIL
+    phone: str = FooterSettings.PHONE
 
     def build(self) -> rio.Component:
         return rio.Grid(
