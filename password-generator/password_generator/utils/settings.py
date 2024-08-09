@@ -12,4 +12,5 @@ class FooterSettings:
 
 
 class HeaderSettings:
-    ...
+    TITLE = "Your Title"
+    SUB_TITLE = "Some subtitle"

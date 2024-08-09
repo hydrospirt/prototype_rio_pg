@@ -1,9 +1,10 @@
 import rio
+from ..utils import HeaderSettings
 
 
 class Title(rio.Component):
-    title: str = "Your Title"
-    subtitle: str = "Some subtitle"
+    title: str = HeaderSettings.TITLE
+    subtitle: str = HeaderSettings.SUB_TITLE
 
     def build(self) -> rio.Component:
         return rio.Column(
