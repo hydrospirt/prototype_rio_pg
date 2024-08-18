@@ -101,11 +101,15 @@ class Options(rio.Component):
                                on_change=self.is_on_change_symbols),
                     rio.Text(text="!-)"),
                     ),
+            rio.Row(rio.Rectangle(fill=rio.Color.from_hex("#0A1819"),
+                                  height=1,
+                                  corner_radius=(10, 0, 10, 0))),
             rio.Row(rio.Checkbox(is_on=GlobalOptions.is_on_bad_symbol,
                                  on_change=self.is_on_change_bad_symbol),
                     rio.Text(text=self.text,
                     align_x=-0.001,
-                    width=35)),
+                    width=35,),
+                    margin_bottom=1,),
             column_spacing=0,
-            row_spacing=2
+            row_spacing=1,
         )
