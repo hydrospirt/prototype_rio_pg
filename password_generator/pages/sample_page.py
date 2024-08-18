@@ -3,7 +3,7 @@ import rio
 from .. import components as comps
 
 
-class SamplePage(rio.Component):
+class MainPage(rio.Component):
     """
     The main page of the password generator
     """
