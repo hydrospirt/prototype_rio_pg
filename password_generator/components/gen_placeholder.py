@@ -75,12 +75,14 @@ class GenPlaceholder(rio.Component):
                 rio.TextInput(
                     label=self.label,
                     width=35,
-                    text=self.bind().text,),
+                    text=self.bind().text,
+                    margin=1,),
                 rio.IconButton(icon="material/install_desktop",
                                on_press=self._on_press),
                 rio.IconButton(icon="material/content_copy",
                                style="minor",
-                               on_press=self.get_to_clip),
+                               on_press=self.get_to_clip,
+                               margin_right=1),
                 spacing=1),
             rio.Row(rio.Slider(
                     value=self.value,
