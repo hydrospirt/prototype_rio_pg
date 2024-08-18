@@ -34,5 +34,5 @@ class Title(rio.Component):
                 ),
             ),
             color=rio.Color.from_hex("#0A1819"),
-            corner_radius=(10, 5, 0, 0)
+            corner_radius=(10, 0, 0, 0)
         )
