@@ -29,7 +29,7 @@ app = rio.App(
         rio.Page(
             name="Home",
             page_url='',
-            build=pages.SamplePage,
+            build=pages.MainPage,
         ),
     ],
     theme=theme,
