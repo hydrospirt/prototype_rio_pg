@@ -24,6 +24,7 @@ class Title(rio.Component):
                 rio.Text(
                     self.subtitle,
                     justify="center",
+                    margin_bottom=1,
                     style=rio.TextStyle(
                         font_size=1,
                         italic=True,
