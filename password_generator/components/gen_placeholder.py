@@ -70,7 +70,7 @@ class GenPlaceholder(rio.Component):
         await self.session.set_clipboard(self.text)
 
     def build(self) -> rio.Component:
-        return rio.Column(
+        return rio.Card(rio.Column(
             rio.Row(
                 rio.TextInput(
                     label=self.label,
@@ -126,4 +126,5 @@ class GenPlaceholder(rio.Component):
                                 underlined=True,
                                 fill=rio.Color.from_hex(self.hex_color)),)),
             comps.Options(),
-            spacing=2,)
+            spacing=2,),
+            corner_radius=(0, 0, 0, 0),)
