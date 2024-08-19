@@ -12,8 +12,8 @@ class FooterSettings:
 
 
 class HeaderSettings:
-    TITLE = "Your Title"
-    SUB_TITLE = "Some subtitle"
+    TITLE = "Password Generator"
+    SUB_TITLE = "Protect your access"
 
 
 OPTIONS_TEXT = "Exclude the characters l and I"
