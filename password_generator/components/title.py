@@ -12,8 +12,10 @@ class Title(rio.Component):
                 rio.Text(
                     self.title,
                     justify="center",
+                    margin_top=2,
+                    wrap=True,
                     style=rio.TextStyle(
-                        font_size=5,
+                        font_size=4,
                         italic=True,
                         font_weight="bold",
                         fill=rio.LinearGradientFill(
