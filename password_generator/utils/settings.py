@@ -4,7 +4,7 @@ year = dt.now().year
 
 
 class FooterSettings:
-    COPYRIGHT = f"© {year} made with Rio framework"
+    COPYRIGHT = f"© {year} made with Rio framework in Russia/Zelenograd"
     TR_LINK = "https://rio.dev/docs"
     ADRESS = "Your adress"
     EMAIL = "youremail@info.com"
