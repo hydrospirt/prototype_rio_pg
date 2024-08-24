@@ -89,8 +89,9 @@ class Footer(rio.Component):
                         margin_bottom=1,
                         margin_top=1,
                         ),
-                        fill=rio.ImageFill(Path(r"D:\Dev\prototype_rio_pg\password_generator\assets\fun-footer.jpeg"),
-                                        fill_mode="zoom",),
+                        fill=rio.ImageFill(Path(
+                            self.session.assets / "fun-footer.jpeg"),
+                            fill_mode="zoom",),
                         corner_radius=(0, 0, 10, 0),),
                     rio.Separator(margin_right=5),
                     rio.Text(self.copyright,
