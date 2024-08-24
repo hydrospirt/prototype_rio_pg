@@ -115,7 +115,7 @@ class GenPlaceholder(rio.Component):
                     rio.Banner(text=self.bind().banner_text,
                                style=self.bind().banner_style,
                                width=0.5,
-                               align_x=-1),
+                               align_x=-0.8),
                     rio.Icon(icon="material/encrypted:fill",
                              width=2,
                              height=2,
