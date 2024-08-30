@@ -8,6 +8,8 @@ import rio
 from . import pages
 from . import components as comps
 
+from .utils import MainPageSettings
+
 # Define a theme for Rio to use.
 #
 # You can modify the colors here to adapt the appearance of your app or website.
@@ -24,14 +26,16 @@ theme = rio.Theme.from_colors(
 
 # Create the Rio app
 app = rio.App(
-    name='password_generator',
+    name="password_generator",
     pages=[
         rio.Page(
             name="Home",
-            page_url='',
+            page_url="",
             build=pages.MainPage,
         ),
     ],
     theme=theme,
     assets_dir=Path(__file__).parent / "assets",
+    description=MainPageSettings.DESCRIPTION,
+    meta_tags=MainPageSettings.META_TAGS
 )
