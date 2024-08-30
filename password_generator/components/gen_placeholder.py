@@ -69,7 +69,90 @@ class GenPlaceholder(rio.Component):
     async def get_to_clip(self):
         await self.session.set_clipboard(self.text)
 
+    @rio.event.on_window_size_change
+    async def on_window_size_change(self):
+        await self.force_refresh()
+
     def build(self) -> rio.Component:
+        # mobile
+        if self.session.window_width < 60:
+            return rio.Card(
+                rio.Column(
+                    rio.TextInput(
+                        label=self.label,
+                        width=0.5,
+                        text=self.bind().text,
+                        margin=1,),
+                    rio.Rectangle(fill=rio.Color.from_hex("#0A1819"),
+                                  height=0.5,
+                                  corner_radius=(10, 0, 10, 0),
+                                  margin=0.5),
+                    rio.Row(
+                        rio.NumberInput(value=self.value,
+                                        label="length",
+                                        decimals=0,
+                                        minimum=8,
+                                        maximum=128,
+                                        width=1,
+                                        margin_left=1,
+                                        on_change=self.on_change_num),
+                        rio.Button(
+                            content="Let's gen",
+                            icon="material/install_desktop",
+                            on_press=self._on_press,),
+                        rio.Button(
+                            content="Copy",
+                            icon="material/content_copy",
+                            style="minor",
+                            on_press=self.get_to_clip,
+                            margin_right=1),
+                        spacing=1,
+                    ),
+                    rio.Rectangle(fill=rio.Color.from_hex("#0A1819"),
+                                  height=0.5,
+                                  corner_radius=(10, 0, 10, 0),
+                                  margin=0.5),
+                    rio.Slider(
+                        value=self.value,
+                        minimum=8,
+                        maximum=128,
+                        step=1,
+                        show_values=True,
+                        width=32,
+                        margin_left=1,
+                        margin_right=1,
+                        on_change=self.on_change_slider),
+                    rio.Row(rio.Text(text="Complexity:",
+                                     selectable=False,
+                                     margin_left=1,
+                                     style=rio.TextStyle(
+                                        font_weight="bold"
+                                     )),
+                            rio.Banner(text=self.bind().banner_text,
+                                       style=self.bind().banner_style,
+                                       width=0.5,
+                                       align_x=0),
+                            rio.Text(text=self.entropy,
+                                     selectable=False,
+                                     align_x=-0.8,
+                                     style=rio.TextStyle(
+                                        font_weight="bold")),
+                            rio.Text(text=self.bind().bits,
+                                     selectable=False,
+                                     align_x=-1.2,
+                                     style=rio.TextStyle(
+                                        font_weight="bold",
+                                        underlined=True,
+                                        fill=rio.Color.from_hex(self.hex_color)
+                                        ),),
+                            proportions=[1, 2, 1, 1]
+                            ),
+                    comps.Options(),
+                ),
+                color=rio.Color.from_hex("#11292B"),
+                corner_radius=(0, 0, 0, 0)
+            )
+        # desktop
         return rio.Card(rio.Column(
             rio.Row(
                 rio.TextInput(

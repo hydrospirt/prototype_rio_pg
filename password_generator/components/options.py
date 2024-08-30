@@ -87,6 +87,40 @@ class Options(rio.Component):
             GlobalOptions.symbols += Symbols.BAD_SYMBOLS
 
     def build(self) -> rio.Component:
+        # mobile
+        if self.session.window_width < 60:
+            return rio.Grid(
+                rio.Row(rio.Rectangle(fill=rio.Color.from_hex("#0A1819"),
+                                      height=0.5,
+                                      corner_radius=(10, 0, 10, 0))),
+                rio.Row(rio.Switch(is_on=GlobalOptions.is_on_lower,
+                                   on_change=self.is_on_change_lower),
+                        rio.Text(text="a-z"),
+                        rio.Switch(is_on=GlobalOptions.is_on_upper,
+                                   on_change=self.is_on_change_upper),
+                        rio.Text(text="A-Z"),
+                        rio.Switch(is_on=GlobalOptions.is_on_nums,
+                                   on_change=self.is_on_change_nums),
+                        rio.Text(text="0-9"),
+                        rio.Switch(is_on=GlobalOptions.is_on_symbols,
+                                   on_change=self.is_on_change_symbols),
+                        rio.Text(text="!-)"),
+                        ),
+                rio.Row(rio.Rectangle(fill=rio.Color.from_hex("#0A1819"),
+                                      height=0.5,
+                                      corner_radius=(10, 0, 10, 0))),
+                rio.Row(rio.Checkbox(is_on=GlobalOptions.is_on_bad_symbol,
+                                     on_change=self.is_on_change_bad_symbol,
+                                     margin_left=1,
+                                     margin_right=1),
+                        rio.Text(text=self.text,),
+                        align_x=-0.0001,
+                        margin_bottom=1,),
+                column_spacing=0,
+                row_spacing=1,
+                margin_top=0.5,
+            )
+        # desktop
         return rio.Grid(
             rio.Row(rio.Switch(is_on=GlobalOptions.is_on_lower,
                                on_change=self.is_on_change_lower),
