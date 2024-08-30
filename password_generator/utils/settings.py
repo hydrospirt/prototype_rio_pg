@@ -17,3 +17,22 @@ class HeaderSettings:
 
 
 OPTIONS_TEXT = "Exclude the characters l and I"
+
+
+class MainPageSettings:
+    """
+    The settings for the main page that you would like to change
+
+    `DESCRIPTION`: A short, human-readable description of the app. This can
+    show up in search engines, social media sites and similar.
+
+    `META_TAGS`: Arbitrary key-value pairs that will be included in the HTML
+        header of the app. These are used by search engines and social media
+        sites to display information about your page, such as the title and a
+        short description.
+    """
+
+    DESCRIPTION = ("A Rio web-app written in 100% Python. "
+                   + "Generate strong passwords using this application")
+    META_TAGS = {"title": "Password Generator",
+                 "description": "Best site on Rio web-app"}
