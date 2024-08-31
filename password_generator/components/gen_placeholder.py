@@ -1,11 +1,14 @@
-import rio
 from typing import Literal
+
+import rio
+
 from .. import components as comps
-from ..utils import create_new_password, get_password_entropy
+from ..utils import (GenPalaceholderSettings, create_new_password,
+                     get_password_entropy)
 
 
 class GenPlaceholder(rio.Component):
-    label: str = "Password Generator"
+    label: str = GenPalaceholderSettings.LABEL
     num_label: str = ""
     value: float = 8
     text: str = ""
@@ -14,7 +17,7 @@ class GenPlaceholder(rio.Component):
     banner_text: Literal["Empty", "Pathetic", "Weak",
                          "Good", "Strong", "Excellent"] = "Empty"
     banner_style: Literal["success", "danger", "info", "warning"] = "warning"
-    entropy: str = "Entropy:"
+    entropy: str = GenPalaceholderSettings.ENTROPY
 
     def change_banner_text(self):
         bits = float(self.bits)
@@ -86,7 +89,8 @@ class GenPlaceholder(rio.Component):
                     rio.Rectangle(fill=rio.Color.from_hex("#0A1819"),
                                   height=0.5,
                                   corner_radius=(10, 0, 10, 0),
-                                  margin=0.5),
+                                  margin_top=0.5,
+                                  margin_bottom=0.5),
                     rio.Row(
                         rio.NumberInput(value=self.value,
                                         label="length",
@@ -97,11 +101,11 @@ class GenPlaceholder(rio.Component):
                                         margin_left=1,
                                         on_change=self.on_change_num),
                         rio.Button(
-                            content="Let's gen",
+                            content=GenPalaceholderSettings.MOB_GENBTN,
                             icon="material/install_desktop",
                             on_press=self._on_press,),
                         rio.Button(
-                            content="Copy",
+                            content=GenPalaceholderSettings.MOB_COPYBTN,
                             icon="material/content_copy",
                             style="minor",
                             on_press=self.get_to_clip,
@@ -111,7 +115,8 @@ class GenPlaceholder(rio.Component):
                     rio.Rectangle(fill=rio.Color.from_hex("#0A1819"),
                                   height=0.5,
                                   corner_radius=(10, 0, 10, 0),
-                                  margin=0.5),
+                                  margin_top=0.5,
+                                  margin_bottom=0.5),
                     rio.Slider(
                         value=self.value,
                         minimum=8,
@@ -122,7 +127,7 @@ class GenPlaceholder(rio.Component):
                         margin_left=1,
                         margin_right=1,
                         on_change=self.on_change_slider),
-                    rio.Row(rio.Text(text="Complexity:",
+                    rio.Row(rio.Text(text=GenPalaceholderSettings.COMPLEXITY,
                                      selectable=False,
                                      margin_left=1,
                                      style=rio.TextStyle(
@@ -189,7 +194,7 @@ class GenPlaceholder(rio.Component):
             rio.Row(rio.Rectangle(fill=rio.Color.from_hex("#0A1819"),
                                   height=1,
                                   corner_radius=(10, 0, 10, 0)),),
-            rio.Row(rio.Text(text="Complexity:",
+            rio.Row(rio.Text(text=GenPalaceholderSettings.COMPLEXITY,
                              selectable=False,
                              margin_left=1,
                              style=rio.TextStyle(
