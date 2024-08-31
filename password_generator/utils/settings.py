@@ -16,6 +16,14 @@ class HeaderSettings:
     SUB_TITLE = "Protect your access"
 
 
+class GenPalaceholderSettings:
+    LABEL = "Password Generator"
+    ENTROPY = "Entropy:"
+    COMPLEXITY = "Complexity:"
+    MOB_GENBTN = "Let's gen"
+    MOB_COPYBTN = "Copy"
+
+
 OPTIONS_TEXT = "Exclude the characters l and I"
 
 
